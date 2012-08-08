@@ -1,0 +1,54 @@
+{
+  "name": "couchviews",
+  "version": "1.0.0",
+  "description": "Store and load CouchDB views to / from your file system for easier setup of new databases.",
+  "author": "Damien Klinnert <mail@damienklinnert.com>",
+  "licence": "MIT",
+  "main": "lib/couchviews.js",
+  "engines": {
+    "node": "~0.8.5"
+  },
+  "dependencies": {
+    "couch-client": "~0.0.4",
+    "commander": "~1.0.1"
+  },
+  "devDependencies": {
+    "request": "~2.10.0",
+    "mocha": "~1.3.2",
+    "should": "~1.1.0"
+  },
+  "bin": {
+    "couchviews": "./bin/couchviews"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/damienklinnert/couchviews.git"
+  },
+  "keywords": [
+    "couchdb",
+    "replicate",
+    "views",
+    "design",
+    "documents",
+    "document",
+    "doc",
+    "file",
+    "disk",
+    "export",
+    "dump",
+    "push",
+    "import",
+    "couch_docs",
+    "couch_design_docs",
+    "setup",
+    "test",
+    "database",
+    "db",
+    "couch",
+    "sync",
+    "folder"
+ ]
+}
