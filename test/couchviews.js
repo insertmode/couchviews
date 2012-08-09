@@ -1,6 +1,7 @@
 var couchviews = require('../lib/couchviews'),
     fs = require('fs'),
     path = require('path'),
+    exec = require('child_process').exec,
     request = require('request'),
     couchclient = require('couch-client');
 
@@ -71,7 +72,6 @@ var insertDirData = function (cb) {
 };
 
 describe('couchviews', function () {
-
 
   describe('#dump()', function () {
 
@@ -175,4 +175,36 @@ describe('couchviews', function () {
     });
 
   });
+});
+
+describe('bin/couchviews', function () {
+
+    beforeEach(function (done) {
+      setupDb(function () {
+        setupDir(done);
+      });
+    });
+
+    afterEach(function (done) {
+      teardownDb(function () {
+        teardownDir(done);
+      });
+    });
+
+    it('dump can be invoked', function (done) {
+      var cmd = 'bin/couchviews dump ' + url + ' ' + dir;
+      exec (cmd, function (err, stdout, stderr) {
+        if (err) { throw new Error(); }
+        done();
+      });
+    });
+
+    it('push can be invoked', function (done) {
+      var cmd = 'bin/couchviews push ' + url + ' ' + dir;
+      exec (cmd, function (err, stdout, stderr) {
+        if (err) { throw new Error(); }
+        done();
+      });
+    });
+
 });
