@@ -45,4 +45,4 @@ You can also use couchviews as a module in your own node projects.
 
 ## Developers
 
-Feel free to experiment and improve this code. There are some unit tests written with mocha and should. Just type `make test` to run them. You'll need a local CouchDB instance to run tests.
+Feel free to experiment and improve this code. There are some unit tests written with mocha and should. Just type `npm test` to run them. You'll need a local CouchDB instance to run tests.
