@@ -21,7 +21,7 @@
     "couchviews": "./bin/couchviews"
   },
   "scripts": {
-    "test": "make test"
+    "test": "./node_modules/.bin/mocha --reporter spec --require should"
   },
   "repository": {
     "type": "git",
