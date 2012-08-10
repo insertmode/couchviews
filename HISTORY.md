@@ -2,6 +2,7 @@
 ==================
 
   * Now using `npm test` instead of `make test`
+  * test/ directory will be shipped with npm again
 
 1.0.3 / 2012-08-09
 ==================
