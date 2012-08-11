@@ -3,6 +3,7 @@ var couchviews = require('../lib/couchviews'),
     path = require('path'),
     exec = require('child_process').exec,
     request = require('request'),
+    should = require('should')
     couchclient = require('couch-client');
 
 var url = 'http://localhost:5984/couchviews_test',
@@ -88,16 +89,24 @@ describe('couchviews', function () {
     });
 
     it('can be invoked with empty database', function (done) {
-      couchviews.dump(url, dir, done);
+      couchviews.dump(url, dir, function (err, designDocs) {
+        should.not.exist(err);
+        designDocs.should.eql([]);
+        done();
+      });
     });
 
     it('generates the necessarry files', function (done) {
       insertDbData(function () {
-        couchviews.dump(url, dir, function () {
+        couchviews.dump(url, dir, function (err, designDocs) {
           var files = fs.readdirSync(dir);
           files.should.include('_design-first.json');
           files.should.include('_design-second.json');
           files.should.have.length(2);
+
+          should.not.exist(err);
+          designDocs.should.eql(['_design/first', '_design/second']);
+
           done();
         });
       });
@@ -105,12 +114,16 @@ describe('couchviews', function () {
 
     it('saves a file with the correct content', function (done) {
       insertDbData(function () {
-        couchviews.dump(url, dir, function () {
+        couchviews.dump(url, dir, function (err, designDocs) {
           var content = fs.readFileSync(path.join(dir, '_design-first.json')),
               obj = JSON.parse(content);
           obj._id.should.equal(data[0]._id);
           obj.language.should.equal(data[0].language);
           obj.views.should.eql(data[0].views);
+
+          should.not.exist(err);
+          designDocs.should.eql(['_design/first', '_design/second']);
+
           done();
         });
       });
@@ -118,10 +131,14 @@ describe('couchviews', function () {
 
     it('removes the _rev field from data', function (done) {
       insertDbData(function () {
-        couchviews.dump(url, dir, function () {
+        couchviews.dump(url, dir, function (err, designDocs) {
           var content = fs.readFileSync(path.join(dir, '_design-first.json')),
               obj = JSON.parse(content);
           obj.should.not.have.property('_rev');
+
+          should.not.exist(err);
+          designDocs.should.eql(['_design/first', '_design/second']);
+
           done();
         });
       });
@@ -144,12 +161,18 @@ describe('couchviews', function () {
     });
 
     it('can be invoked with empty folder', function (done) {
-      couchviews.push(url, dir, done);
+      couchviews.push(url, dir, function (err, designDocs) {
+        should.not.exist(err);
+        designDocs.should.eql([]);
+        done();
+      });
     });
 
     it('generates the necessary documents', function (done) {
       insertDirData(function () {
-        couchviews.push(url, dir, function () {
+        couchviews.push(url, dir, function (err, designDocs) {
+          should.not.exist(err);
+          designDocs.should.eql(['_design/first', '_design/second']);
           db.get(data[0]._id, function (err, designDoc) {
             if (err) { throw new Error('error when getting design document: ' + err); }
             db.get(data[1]._id, function (err, designDoc) {
@@ -163,7 +186,9 @@ describe('couchviews', function () {
 
     it('saves a file with the correct content', function (done) {
       insertDirData(function () {
-        couchviews.push(url, dir, function () {
+        couchviews.push(url, dir, function (err, designDocs) {
+          should.not.exist(err);
+          designDocs.should.eql(['_design/first', '_design/second']);
           db.get(data[0]._id, function (err, designDoc) {
             if (err) { throw new Error('error when getting design document: ' + err); }
             delete designDoc._rev;
