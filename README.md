@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/damienklinnert/couchviews.png?branch=master)](http://travis-ci.org/damienklinnert/couchviews)
+
 # couchviews
 
 Store and load CouchDB views to / from your file system for easier setup of new databases.
