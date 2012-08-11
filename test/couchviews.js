@@ -105,7 +105,9 @@ describe('couchviews', function () {
           files.should.have.length(2);
 
           should.not.exist(err);
-          designDocs.should.eql(['_design/first', '_design/second']);
+          designDocs.should.include('_design/first');
+          designDocs.should.include('_design/second');
+          designDocs.should.have.length(2);
 
           done();
         });
@@ -122,7 +124,9 @@ describe('couchviews', function () {
           obj.views.should.eql(data[0].views);
 
           should.not.exist(err);
-          designDocs.should.eql(['_design/first', '_design/second']);
+          designDocs.should.include('_design/first');
+          designDocs.should.include('_design/second');
+          designDocs.should.have.length(2);
 
           done();
         });
@@ -137,7 +141,9 @@ describe('couchviews', function () {
           obj.should.not.have.property('_rev');
 
           should.not.exist(err);
-          designDocs.should.eql(['_design/first', '_design/second']);
+          designDocs.should.include('_design/first');
+          designDocs.should.include('_design/second');
+          designDocs.should.have.length(2);
 
           done();
         });
@@ -172,7 +178,9 @@ describe('couchviews', function () {
       insertDirData(function () {
         couchviews.push(url, dir, function (err, designDocs) {
           should.not.exist(err);
-          designDocs.should.eql(['_design/first', '_design/second']);
+          designDocs.should.include('_design/first');
+          designDocs.should.include('_design/second');
+          designDocs.should.have.length(2);
           db.get(data[0]._id, function (err, designDoc) {
             if (err) { throw new Error('error when getting design document: ' + err); }
             db.get(data[1]._id, function (err, designDoc) {
@@ -188,7 +196,9 @@ describe('couchviews', function () {
       insertDirData(function () {
         couchviews.push(url, dir, function (err, designDocs) {
           should.not.exist(err);
-          designDocs.should.eql(['_design/first', '_design/second']);
+          designDocs.should.include('_design/first');
+          designDocs.should.include('_design/second');
+          designDocs.should.have.length(2);
           db.get(data[0]._id, function (err, designDoc) {
             if (err) { throw new Error('error when getting design document: ' + err); }
             delete designDoc._rev;
