@@ -1,3 +1,8 @@
+1.1.2 / 2012-08-11
+==================
+
+  * .travis.yml will no longer be shipped with npm (added to .npmignore)
+
 1.1.1 / 2012-08-11
 ==================
 
