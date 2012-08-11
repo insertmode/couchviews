@@ -1,3 +1,9 @@
+1.1.1 / 2012-08-11
+==================
+
+  * Fixed a bug in test/couchviews that required the test data to be explicitly ordered
+  * Added support for travis-ci in .travis.yml and build status in README.md
+
 1.1.0 / 2012-08-11
 ==================
 
