@@ -33,12 +33,12 @@ You can also use couchviews as a module in your own node projects.
     
     var url = 'http://localhost:5984/db', path = 'db';
     
-    couchviews.dump(url, path, function (err) {
-      console.log('done');
+    couchviews.dump(url, path, function (err, designDocs) {
+      console.log('done, dumped: ', designDocs);
     });
     
-    couchviews.push(url, path, function (err) {
-      console.log('done');
+    couchviews.push(url, path, function (err, designDocs) {
+      console.log('done, pushed: ', designDocs);
     });
     
 
