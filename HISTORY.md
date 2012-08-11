@@ -1,3 +1,9 @@
+1.1.0 / 2012-08-11
+==================
+
+  * couchviews.dump and couchviews.push now pass a list of affected design documents to cb
+  * couchviews executable is a little bit more verbose and prints a list of affected design documents
+
 1.0.4 / 2012-08-10
 ==================
 
