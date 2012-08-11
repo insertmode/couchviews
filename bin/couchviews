@@ -13,9 +13,9 @@ program
   .command('dump <couchdb> <dir>')
   .description('dumps the content of a couchdb into a dir.')
   .action(function (couchdb, dir) {
-    couchviews.dump(couchdb, dir, function (err) {
+    couchviews.dump(couchdb, dir, function (err, designDocs) {
       if (err) { throw new Error(err); }
-      console.log('success');
+      console.log('success, dumped: ', designDocs);
     });
   });
 
@@ -23,9 +23,9 @@ program
   .command('push <couchdb> <dir>')
   .description('pushes the content of a dir into a couchdb.')
   .action(function (couchdb, dir) {
-    couchviews.push(couchdb, dir, function (err) {
+    couchviews.push(couchdb, dir, function (err, designDocs) {
       if (err) { throw new Error(err); }
-      console.log('success');
+      console.log('success, pushed: ', designDocs);
     });
   });
 
